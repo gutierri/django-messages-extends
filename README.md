@@ -53,11 +53,11 @@ INSTALLED_APPS = (
 )
 ```
 
-4. Make sure Django's `MessageMiddleware` is in your `MIDDLEWARE_CLASSES` setting (which is the
+4. Make sure Django's `MessageMiddleware` is in your `MIDDLEWARE` setting (which is the
 case by default):
 
 ```python
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE = (
     ...
     'django.contrib.messages.middleware.MessageMiddleware',
 )
@@ -67,10 +67,10 @@ MIDDLEWARE_CLASSES = (
 available under `http://domain.com/messages/`, add the following line to `urls.py`.
 
 ```python
-urlpatterns = patterns('',
-    (r'^messages/', include('messages_extends.urls')),
+urlpatterns = [
+    path('messages/', include('messages_extends.urls')),
     ...
-)
+]
 ```
 
 6. In your settings, set the message [storage backend](http://docs.djangoproject.com/en/dev/ref/contrib/messages/#message-storage-backends)to `messages_extends.storages.FallbackStorage`:
@@ -90,7 +90,7 @@ MESSAGE_STORAGE = 'messages_extends.storages.FallbackStorage'
 ```python
 TEMPLATE_DIRS = (
     ...
-    'path/to/messages_extends/templates')
+    'path/to/messages_extends/templates'
 )
 ```
 
